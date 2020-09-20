@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="div1">
+        <p>{{fullname1()}}</p>
+        <span>{{fullname1()}}</span>
+        <section>{{fullname1()}}</section>
+        <p>{{fullname1()}}</p>
+
+        <hr>
+
+        <p>{{fullname2}}</p>
+        <span>{{fullname2}}</span>
+        <section>{{fullname2}}</section>
+        <p>{{fullname2}}</p>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#div1',
+        data: {
+            obj: {
+                firstname: 'yi',
+                lastname: 'yelin',
+            },
+        },
+
+        methods: {
+            fullname1() {
+                console.log('方法里面的fullname1');
+                //后台打印了4次
+                return this.obj.firstname + ' ' + this.obj.lastname;
+            },
+        },
+        //方法写到插值语法里得写上括号
+
+        computed: {
+            fullname2() {
+                console.log('计算里面的fullname2');
+                //后台只打印了一次
+                //计算属性有缓存功能，如果再次调用没有变化是不会执行的
+                //监听这里是否发生变化
+                //可以减少性能的损失
+                return this.obj.firstname + ' ' + this.obj.lastname;
+            },
+        },
+        //计算里的属性写到插值语法里不用写括号   具体两者差别看上面
+    })
+</script>
+
+</html>

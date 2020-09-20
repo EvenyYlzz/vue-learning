@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="app1">
+        <input id="input" type="text" v-model="inputVal">
+        <p id="p1"></p>
+        <p id="p2"></p>
+    </br>
+</br>
+        <div>-------------------vue-------------------</div>
+    </br>
+        <div id="app2">
+            <input id="input" type="text" v-model="inputVal">
+            <p id="p3">{{inputVal}}</p>
+            <p id="p4">{{inputVal}}</p>
+        </div>
+    </div>
+
+    <script>
+
+        //js实现方式
+        var input = document.getElementById('input');
+        var p1 = document.getElementById('p1');
+        var p2 = document.getElementById('p2');
+        
+        input.oninput = function () {
+            console.log(input.value);
+            p1.innerHTML = input.value;
+            p2.innerHTML = input.value;
+        }
+        
+        //vue实现方式
+        new Vue({
+            el:"#app2",
+            data:{
+                inputVal:""
+            }
+        })
+    
+
+    </script>
+
+
+</body>
+
+</html>

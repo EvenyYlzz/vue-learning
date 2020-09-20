@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="app1"></div>
+    <div id="app2">{{a}}</div>
+
+    <script>
+        var a=1;
+        var appx = document.getElementById('app1');
+        appx.innerHTML = a;
+
+        //Vue 实例化
+        //1.绑定vue使用的范围 el
+        //2.在data定义变量
+        //3.通过格式{{}}绑定变量到html标签
+
+        new Vue({   
+            el:"#app2",   //vue影响的html页面范围
+            data:{  //定义vue使用的变量
+                a:1
+            },
+        })
+    </script>
+    
+</body>
+</html>

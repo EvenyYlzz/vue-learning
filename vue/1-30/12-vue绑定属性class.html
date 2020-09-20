@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        .bianda{
+            font-size: 30px;
+        }
+        
+        .bg{
+            background-color: seagreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div1">
+        <!-- v-bind绑定class属性  class属性比普通的属性特殊一点 -->
+        <!-- v-bind：class = "{'类名1':布尔值（true就使用这个类名  false就不使用），'类名2':布尔值}" -->
+        <!-- v-bind：class="['类名1'，'类名2'，数组里面的每一个元素都可以写表达式，例如三元运算式]" -->
+        
+        <button @click="changebianda()">变大变小</button>
+        <p><a :href="x1"  :class="{'bianda':bool1}">百度</a></p>
+
+        <button @click="changebianse()">变色</button>
+        <p><a :href="x1" class="bianda" :class="{'bg':bool2}">百度一下</a></p>
+
+
+        <p></p>
+        <p></p>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#div1',
+        data:{
+            x1:'https://www.baidu.com',
+            bool1: false,
+            bool2: false,
+        },
+        methods:{
+            changebianda(){
+                this.bool1 = !this.bool1;
+            },
+            //取反重新赋值
+            changebianse(){
+                this.bool2 = !this.bool2;
+            },
+        },
+    })
+
+</script>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+
+</body>
+<script>
+    var obj = {a:1};
+    var n = '';
+
+/*
+    如果使用get和set方法就不能再用
+    value修饰符，会报错冲突
+    writable修饰符，也会报错冲突
+
+    configurable和enumerable不会冲突
+    可以同使与get set方法同使使用
+*/    
+
+    Object.defineProperty(obj,'name',{
+        
+        // value:'李四',
+        
+        // writable:true,
+        //属性是否可以被修改
+
+        configurable:true,
+        //属性能不能被删除
+
+        enumerable:true,
+        //属性能不能被删除
+
+        get:function(){
+            console.log('get方法');
+            return n;
+        },
+
+        set:function(val){
+            n = val;
+            console.log('set方法 val：'+val);
+        }
+    })
+
+    //触发set方法（赋值）
+    obj.name = '张三';
+
+    console.log('--------------------');
+
+    //触发get方法
+    console.log(obj.name);
+
+    console.log(obj);
+</script>
+</html>

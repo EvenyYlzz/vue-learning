@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        .div2{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div1">
+        <p><button @click="changeSize">切换文字大小</button></p>
+        <div  class="div2" :style="{fontSize:size}">chaojuchaoju</div>
+
+        <p><button @click="changeColor">切换文字大小</button></p>
+
+        <!-- click="changeColor"  无括号，自带事件源对象
+        click="changeColor()" 无传参，无事件源对象，输出显示undefine
+        如果既要获得事件源对象，还要传参，则设置两个参数
+        事件源对象用$event，即可获得 -->
+        
+        <p></p>
+        <p></p>
+    </div>
+</body>
+
+<script>
+    new Vue({
+        el:'#div1',
+        data:{
+            color:'rgb(0,0,0)',
+            size:'20px',
+        },
+        methods:{
+            changeColor(){
+                this.color = 'rgb('+this.randomcolor()+','+this.randomcolor()+','+this.randomcolor()+')';
+            },
+            
+            randomcolor(){
+                return Math.floor(Math.random()*256);
+            },
+
+            changeSize(){
+                a = (Math.floor(Math.random()*100));
+                this.size = a+'px';
+                console.log(this.size);
+            }
+        },
+    })
+        
+
+           
+</script>
+</html>

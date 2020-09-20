@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+</body>
+<script>
+    //本地缓存指的就是浏览器本地缓存
+    // localStorage   sessionStorage
+    /*
+        localStorage特征：
+            1.永久缓存在浏览器里面
+            2.浏览器关闭并不会清除localStorage里面的内容，需要手动删除，调用删除方法
+            3.setItem（key值字符串，value字符串）设置内容到localStorage里面
+            4.getItem（key值字符串）获取localStorage里面key值对应的value值
+            5.clear（）清除所有localStorage里面的值
+            6.存储到localStorage里面的数据都是以字符串的形式存储的
+    */
+    /*
+        Json.stringify()  : 可以把对象类型转换为字符串的形式
+        Json.parse()   :  可以把字符串的对象类型转换成真正对象
+    */
+    
+    
+    //var str = '123';
+    //localStorage.setItem('str',str); 本地存入数据到浏览器
+    //localStorage.clear() 清除localStorage存入的数据
+    var obj = {
+        a:1,
+        b:2,
+    };
+    localStorage.setItem('obj',JSON.stringify(obj));
+    //用obj标记本次存放的数据，对象不能直接存放，要转化成数据的字符串类型，所以要用JSON.string将对象转化成字符串再存入浏览器
+
+    var strObj = localStorage.getItem('obj');
+    //将存入浏览器的对象（字符串形式）取出来赋值给strObj，此时取得只是obj的字符串形式，下面验证其类型
+
+    console.log(typeof strObj);
+    //显示字符串String类型
+    console.log( JSON.parse(strObj),JSON.parse(strObj).a);
+    //将strObj对象字符串形式通过JSON.parse()转化为其存入的对象类型，第一个输入其完整最新形式，第二个取出其a
+
+</script>
+</html>

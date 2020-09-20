@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <!-- 一层一层地传递，过滤器 -->
+    <div id="div1">{{ Time | formTime | addStr }}</div>
+</body>
+<script>
+    new Vue({
+        el:'#div1',
+        data:{
+            Time:'2020/06/06',
+        },
+        filters:{
+            formTime(val){
+                console.log(val);
+                
+                //return val.split('/').join('-');
+
+                return val.replace(/\//g,'-');
+                //正则表达式
+            },
+
+            addStr(val){
+                console.log(val);
+
+                return '当前时间：' + val;
+            }
+        },
+    })
+</script>
+</html>

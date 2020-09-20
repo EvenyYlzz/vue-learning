@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{a1}}</p>
+        <p>{{test2}}</p>
+    </div>
+</body>
+<script>
+    /* 
+        get 变量 获取当前变量的值会触发这个get方法
+        set 变量 设置当前变量的值会触发这个set方法
+        viewmodel
+        为什么vue里面的变量会有get和set这两个方法呢
+        因为底层实现的时候用了一个Object.defineProperty()  【红宝石141页】
+        Object.defineProperty:
+            用来绑定对象上面属性的get和set方法
+    */
+
+    var obj = [];
+    // obj上增加一个name属性
+    // obj.name = "张三";
+    
+    // Objcet.defineProperty(对象，'对象要增加的属性'，{拓展属性})
+
+    Object.defineProperty(obj,'name',{
+        
+        //value:'张三'
+        
+        //writable:true,
+        //判断是否可以修改，true：可以修改属性的值
+        //                false：不可以修该属性的值
+
+        //enumrable:true,
+        //判断是否可以被枚举  同上   默认都是false
+
+        //configurable:false,
+        //判断是否可以删除   同上    默认都是false
+
+        get:function(){
+            console.log('get方法');
+            return '张三';
+        },
+
+        set function(val){
+            console.log('set方法');
+            console.log(val);
+        }
+    });
+    console.log(obj.name); //会触发get方法
+    obj.name='李四';  //会触发set方法
+
+    console.log('-------------------------------');
+    console.log(Object.keys(obj));
+    //Object.keys获取到key值的集合（key值组成的数组）
+    delete obj.name;
+    console.log(obj);
+
+    var app = new Vue({
+        el:'#app',
+        data:{
+            a1:1,
+            test2:'999'
+        }
+    });
+    console.log(app);
+
+</script>
+</html>

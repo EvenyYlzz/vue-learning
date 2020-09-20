@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .li1{
+        display: inline-block;
+        width: 520px;
+        height: 280px;
+    }
+
+    #div1{
+        position: relative;
+        width: 520px;
+        height: 280px;
+        overflow: hidden;
+    }
+    .ul1{
+        font-size: 0;
+        white-space: nowrap;
+        transition: all 0.4s linear;
+    }
+    #button1{
+        position: absolute;
+        left:5px;
+        top:130px;
+    }
+    #button2{
+        position: absolute;
+        right:10px;
+        top:130px;
+    }
+
+</style>
+
+</head>
+<body>
+    <div id="div1">
+        <ul :style="{'transform':'translateX(-'+(index*520)+'px)'}" class="ul1">
+            <li class="li1" v-for="( img , idx ) in imgs" :key="idx">
+                <img :src="img"/>
+            </li>
+        </ul>
+        <button id="button1" @click="pre">上一页</button>
+        <button id="button2" @click="next">下一页</button>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#div1',
+        
+        data:{
+            imgs:[
+                //"图片/5.jpg",
+                "图片/1.jpg",
+                "图片/2.jpg",
+                "图片/3.jpg",
+                "图片/4.jpg",
+                "图片/5.jpg",
+                //"图片/1.jpg",
+            ],
+            index:0,
+        },
+
+        methods:{
+            
+            pre(){
+                if(this.index==0){
+                    return ;
+                }
+                this.index=this.index-1;
+                console.log(this.index);
+            },
+
+            next(){
+                if(this.index==this.imgs.length-1){
+                    return this.index=0;
+                }
+                this.index=this.index+1;
+                console.log(this.index);
+            },
+        },
+    })
+</script>
+</html>

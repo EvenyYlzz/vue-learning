@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="div1">
+        <my-parent>
+
+        </my-parent>
+    </div>
+</body>
+
+<!-- html自定义的嵌套关系必须也要按照嵌套关系写在页面上 -->
+
+<template id="demo1">
+    <div>
+    <p>父节点{{parstr}}</p>
+    <my-child :mychildstr="parstr">  
+    通过：绑定了自定义属性引用父组件的变量parstr    
+    <!-- 写在这才能渲染 -->
+    </my-child>
+    </div>
+</template>
+
+<script>
+    //父组件传值子组件：
+    //   父组件传值子组件 （自定义属性）
+    //   子组件上使用自定义属性来绑定需要传递到子组件内的变量
+
+    /*
+        MyParent 传值到 MyChild 里面去使用
+        1.找到<my-child>这个标签，在这个标签上使用自定义属性  :自定义属性名称="需要绑定的变量名（需要传值到MyChild里面的值）"
+        2.需要到MyChild组件定义的地方（就是对象），在这个对象上增加一个props属性（对象\数组）
+        3.就可以在MyChild里面的template使用我们这一个自定义属性（根据自定义属性名称使用），使用的方式和变量一样
+        
+        注意这个传值范围只能是父传到子，不能父传到孙子
+    */
+
+
+    new Vue({
+        
+        el:'#div1',
+
+        data:{
+            str:'data数据',
+        },
+
+        components:
+        {
+            
+            'MyParent':
+            {
+                template:'#demo1',
+
+                data:function()
+                {
+                    return{
+                        parstr:'str父节点',
+                    }
+                },
+            //Myparen是mychild的父组件
+            //所以嵌套关系一定要写好，不能随意乱写
+
+                components:
+                {
+                    'MyChild':
+                    {
+                        template:'<a href="https://www.baidu.com">百度一下{{str}}-----{{mychildstr}}</a>',
+
+                        //property属性
+                        props:{
+                            mychildstr:{
+                                type:String, //Number  Object Array  Boolean
+                                default:'', // 初始化的值，空字符串
+                            },
+                        },
+
+                        data:function(){
+                            return{
+                                str:'子节点skr',
+                            }
+                        },
+                    }
+                    
+                },
+            },
+        }
+    })
+</script>
+</html>

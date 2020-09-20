@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="div1">
+        <my-parent>
+
+        </my-parent>
+    </div>
+</body>
+
+<!-- html自定义的嵌套关系必须也要按照嵌套关系写在页面上 -->
+
+<template id="demo1">
+    <div>
+    <p>父节点{{str}}</p>
+    <my-child>      
+    <!-- 写在这才能渲染 -->
+    </my-child>
+    </div>
+</template>
+
+<script>
+    new Vue({
+        
+        el:'#div1',
+
+        data:{
+            str:'data数据',
+        },
+
+        components:
+        {
+            
+            'MyParent':
+            {
+                template:'#demo1',
+
+                data:function()
+                {
+                    return{
+                        str:'str父节点',
+                    }
+                },
+            //Myparen是mychild的父组件
+            //所以嵌套关系一定要写好，不能随意乱写
+
+                components:
+                {
+                    'MyChild':
+                    {
+                        template:'<a href="https://www.baidu.com">百度一下</a>',
+                    }
+                    
+                },
+            },
+        }
+    })
+</script>
+</html>

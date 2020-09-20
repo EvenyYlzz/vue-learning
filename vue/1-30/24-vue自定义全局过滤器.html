@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="div1">
+        <p>{{ Time1 | formTime | addStr }}</p>
+    </div>
+    <div id="div2">
+        <p>{{ Time2 | formTime | addStr }}</p>
+    </div>
+</body>
+<script>
+    Vue.filter('formTime',function(val){
+        return val.split('/').join('-');
+    })
+    //定义全局的过滤器，要写在实例前面
+    Vue.filter('addStr',function(val){
+        return '当前时间: '+ val;
+    })
+
+    new Vue({
+        el:'#div1',
+        data:{
+            Time1:'2020/06/06',
+        },
+    })
+
+    new Vue({
+        el:'#div2',
+        data:{
+            Time2:'2021/07/07',
+        }
+    })
+</script>
+</html>

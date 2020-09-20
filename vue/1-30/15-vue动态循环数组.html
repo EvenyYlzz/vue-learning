@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+
+    <!-- 变量（每次遍历数组得到的元素）
+    vue 里面的循环语法 指令v-for=“（变量，下标） in 数组”
+    v-for 一般需要加多一个属性 key值  key的值一般是采取一个唯一的值
+    在这里面下标的的值是唯一的，所以采取下标作为key的值 -->
+
+    <div id="div1">
+        <p v-for="(item,index) in arr">{{index}}</p>
+    <hr>
+        <p v-for="(item,index) in arr">{{item}}</p>
+    <hr>
+        <p v-for="(item111,index222) in arr" :key="index222">{{item111}}</p>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#div1',
+        data:{
+            arr:[1,2,3,324,423,423,23,1,23,234,324],
+        },
+    })
+</script>
+</html>

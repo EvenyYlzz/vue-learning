@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="div1">
+
+        {{test1()}}
+        <p>{{test1()}}</p>
+        <p>{{test2()}}</p>
+        <p>{{test3(3)}}</p>
+        <p>{{test4()}}</p>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#div1',
+        data: {
+            num1: 1,
+        },
+        methods: {
+            test1: function () {
+                return this.num1 + '1111111111';
+            },
+
+            test2: function () {
+                return this.test1() + '22222';   //方法调用方法
+            },
+
+            test3: function (num2) {
+                return this.num1 + num2;
+            },
+
+            test4() {    //es6语法
+                return this.num1 + 444444444;
+            },
+        }
+    })
+</script>
+
+</html>

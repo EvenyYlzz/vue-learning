@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="div1">
+        <p>-------------v-if true显示 false隐藏------------</p>
+        <p v-if="bool1">bool1：{{a}}</p>
+        <p v-if="bool2">bool2：{{a}}</p>
+        <p v-if="bool3==0">bool3：{{a}}</p>
+    </br>
+    </br>
+        <p>-------------v-show true显示 false隐藏------------</p>
+        <p v-show="bool1">bool1：{{a}}</p>
+        <p v-show="bool2">bool2：{{a}}</p>
+        <p v-show="bool3==0">bool3：{{a}}</p>
+    </div>
+</body>
+<script>
+
+    //v-if和v-show都是true显示 false隐藏
+    //区别：
+    //v-if如果时隐藏会直接把该隐藏的标签从html中删除  ！使用v-if会比较浪费性能，操作DOM！
+    //v-show如果隐藏时仅是将该标签设置为display：none
+
+    //如果页面频繁操作显示和隐藏，建议使用v-show，不建议使用v-if，性能问题考虑
+    //操作DOM是很耗费性能的
+    new Vue({
+        el:'#div1',
+        data:{
+            a:'变量a',
+            bool1:true,
+            bool2:false,
+            bool3:0,
+        }
+    })
+</script>
+
+</html>

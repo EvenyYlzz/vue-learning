@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="div1">
+        <demo1></demo1>
+        <my-baidu></my-baidu>
+    </div>
+</body>
+
+<template id="demo1">
+    <div>
+        <p>我是demo1的局部组件p1</p>
+    </div>
+</template>
+<template id="baidu">
+    <a href="https://www.baidu.com">百度</a>
+</template>
+<script>
+    new Vue({
+            
+        el:'#div1',
+
+        components:{
+            
+            demo1:{
+                template:'#demo1',
+            },
+
+            MyBaidu:{
+                template:'#baidu',
+            }
+        }
+    })
+</script>
+</html>

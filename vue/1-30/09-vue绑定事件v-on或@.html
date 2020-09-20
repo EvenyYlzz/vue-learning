@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        p {
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div1">
+        <!-- 选项卡 -->
+        <!-- v-on 绑定事件 v-on：事件名称=“响应这个事件的方法（函数）名” -->
+        <!-- v-on: 可以简写成@ -->
+        <button v-on:click="handleClick(1)">按钮1</button>
+        <button @click="handleClick(2)">按钮2</button>
+        <button @click="handleClick(3)">按钮3</button>
+
+
+        <p v-show="num==1">选项1内容</p>
+        <p v-show="num==2">选项2内容</p>
+        <p v-show="num==3">选项3内容</p>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#div1',
+        data: {
+            num: 1,
+        },
+        methods: {      //vue定义方法的地方methods  以键值对的形式来定义
+            handleClick: function (num1) {
+                this.num = num1;
+            }
+        }
+    })
+</script>
+
+</html>

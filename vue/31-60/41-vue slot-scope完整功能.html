@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="div1">
+        <my-table :ulists="users1">
+            <button slot-scope="scope1" @click="edit(scope1)">删除</button>
+<!-- 通过slot-scope指令绑定slot标签上面的集合(scope) 变量名         -->
+        </my-table>
+        <p>-----------------------------------</p>
+        <my-table :ulists="users2">
+            <button slot-scope="scope" @click="edit(scope)">编辑</button>
+        </my-table>
+    </div>
+</body>
+
+<template id="temp">
+    <table>
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="(user,index) in ulists" :key="index">
+                <td>{{user.name}}</td>
+                <td>{{user.age}}</td>
+                <td><slot :username="user.name" :age="user.age" :idx="index"></slot></td>
+            </tr>
+        </tbody>
+    </table>
+</template>
+
+<script>
+    new Vue({
+        el:'#div1',
+
+        data:{
+            users1:[
+                {name:'张三',age:'19'},
+                {name:'李四',age:'20'},
+                {name:'王五',age:'21'},
+            ],
+
+            users2:[
+                {name:'李六',age:'18'},
+                {name:'狗七',age:'20'},
+                {name:'蛤八',age:'22'},
+            ],
+        },
+
+        methods:{
+            edit(scope1){
+                console.log(scope1);
+            }
+        },
+
+        components:{
+            MyTable:{
+                template:'#temp',
+                props:{
+                    ulists:{
+                        type:Array,
+                        default:[],
+                    }
+                }
+            }
+        }
+    })
+</script>
+</html>

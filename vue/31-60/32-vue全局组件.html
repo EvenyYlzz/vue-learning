@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="div1">
+        <de-mo1></de-mo1>
+        <!-- 命名规则看第3注意点 -->
+        <demo2></demo2>
+        <demo3></demo3>
+    </div>
+</body>
+<template id="p3">
+    <div>
+    <p>我是demo3的全局组件p3</p>
+    <p>我是demo3的全局组件p4</p>
+    </div>
+    <!-- <p>我是demo3的全局组件p4</p>
+    不显示改行，因为template这个属性要求（组件要求），只有一个根元素 -->
+
+</template>
+<script>
+    //所以要把里面的标签写在一个根里面，例如用一个根包住
+
+    //1.可以把template里面的内容写在template标签里面，根据id值进行关联
+    //2.只能有一个根，多个根会导致编译错误
+    //3.一般命名规则，首字母大写，在html标签里面使用时，标签首字母不需要大写，首字母后面如果有大写字母的，该成小写，用-连接，例如DeMo1
+
+    Vue.component('demo3',{
+        template:'#p3',
+    })
+    //全局组件
+    Vue.component('DeMo1',{
+        template:   '<p>我是demo1的全局组件p1<p>',
+    });
+    Vue.component('demo2',{
+        template:   '<p>我是demo1的全局组件p2<p>',
+    });
+    new Vue({
+        el:'#div1',
+        
+    })
+</script>
+</html>

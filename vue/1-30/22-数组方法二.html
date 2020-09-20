@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+</body>
+<script>
+    var arr=[2,3,4];    
+    //splice(插入成为的位置，删除的位置【数组索引从0开始，可为负数】，删除元素的个数【为0则不删除】，加入的元素)
+     //删除数组第二个元素
+    arr.splice(1,1);
+    console.log('删除第二个元素：'+arr);  //[2,4]
+
+    //在元素2和4之间插入一个5
+    arr.splice(1,0,5);
+    console.log('2和4之间插入一个5：'+arr);  //[2,5,4]
+    
+    //把5替换成6
+    arr.splice(1,1,6);
+    console.log('把5替换成6：'+arr); //[2,6,4]
+
+    //[2,6,4]  -->>  [2,6,（4,5）,4]
+    arr.splice(2,0,4,5);   //（4，5）是一个整体，他们要变成第[2]个元素
+    console.log('6和3之间加入4，5：'+arr);
+    console.log('-------------------------------------------------------');
+    console.log('-------------------------------------------------------');
+
+    //slice(开始的索引下标，结束的索引下标【不包括此下标】)
+    console.log(arr.slice(1,2));   //[6]的数组
+
+    //concat(把两个数组合并起来)
+    console.log(arr.concat([10,100,100]));  //[2,6,4,5,4,10,100,100] 没改变原数组
+
+    console.log('-------------------------------------------------------');
+    console.log('-------------------------------------------------------');
+    //[2,6,4,5,4]
+    var newarr1 = arr.filter(function(item,index){
+        return item>4;//比4大会返回true,否则返回false
+    });
+    console.log(newarr1);
+    //filter 可以过滤掉数组里面的某些元素 和 return配合使用
+    //filite 什么情况下会过滤？return false 就会过滤,return true不会过滤
+
+
+    //arr[2,6,4,5,4]
+    console.log('-------------------------------------------------------');
+    console.log('-------------------------------------------------------');
+
+    var newarr2 = arr.map(function(item,index){
+        return item+2;
+    });
+    var newarr3 = arr.map(function(item,index){
+        return ({id:item+2});
+    });                         //map 用来改变数组的每一个元素，生成一个心得数组，return数组里的每一个元素
+    console.log(newarr2);
+    console.log(newarr3);
+
+    console.log('-------------------------------------------------------');
+    console.log('-------------------------------------------------------');
+
+    var newarr4 = arr.reduce(function( prev,current ){
+        console.log(prev,current);
+        return '222';
+    },['111'])
+    console.log(newarr4);
+    //reduce功能很强大
+    //reduce(第一个参数【回调方法】，第二个参数【回调方法里面的第一个参数的初始化值】)
+    //回调函数里面返回什么，下一次的prev就是什么
+    var newarr5 = arr.reduce(function( prev,current ){
+        if(current>4){
+            prev.push(current);
+        }
+        return prev;
+    },[])
+    console.log(newarr5);
+
+    console.log('-------------------------------------------------------');
+    console.log('-------------------------------------------------------');
+    //作业1  用reduce求总和  arr[2,6,4,5,4]
+    var sum = arr.reduce(function( prev,current ){
+        
+        prev = current+prev;
+        return prev;
+
+    },0);
+    console.log(sum);
+
+
+</script>
+</html>

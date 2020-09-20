@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="div1">
+        <p>zjx是你的</p>
+        <input type="text" v-model="inputVal">
+        <button @click="add">添加</button>
+        <ul>
+            <li v-for="(item,index) in arr" :key="index">{{item}}</li>
+        </ul>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#div1',
+        data:{
+            arr:['小臭猪'],
+            inputVal:'',
+        },
+        //unshift往数组最前面添加元素
+        //push往数组最后面添加元素
+        methods:{
+            add(){
+                this.arr.unshift(this.inputVal);
+            }
+        }
+    })
+</script>
+</html>

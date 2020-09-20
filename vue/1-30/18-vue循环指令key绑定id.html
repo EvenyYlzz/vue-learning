@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="div1">
+        <input type="text"  v-model="inputVal">
+        <button @click="add">添加</button>
+        <ul>
+            <li v-for="(item,index) in arr" :key="item.id" :mykey="item.id"><input type="checkbox">{{item.value}}</li>
+        </ul>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#div1',
+        data:{
+            arr:[
+                {id:1 , value:'Angular'},
+                {id:2 , value:'React'},
+                {id:3 , value:'Vue'},
+            ],
+            inputVal:'',
+        },
+        methods:{
+            add(){
+                this.arr.unshift({id:this.arr.length+1 , value:this.inputVal});
+            },
+            //实际操作上是不需要自定义id值的，直接去后端返回数据id值
+        },
+    })
+</script>
+</html>

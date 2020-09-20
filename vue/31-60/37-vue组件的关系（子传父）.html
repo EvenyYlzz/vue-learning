@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="div1">
+        <p>{{str}}</p>
+        <p :style="{'color':color}">颜色：{{color}}</p>
+
+        <my-con @changecolor="cColor"></my-con>
+    </div>
+</body>
+<template id="temp1">
+    <div>
+        <button @click="sendColor">按钮1</button>
+    </div>
+</template>
+<script>
+    new Vue({
+        
+        el:'#div1',
+
+        data:{
+            str:'123',
+            color:'#000',
+        },
+
+        methods:{
+            cColor(c){
+                console.log(c);
+                this.color = c;
+            }
+        },
+
+        components:{
+            'MyCon':{
+                
+                template:'#temp1',
+
+                data:function(){
+                    return{
+                        color:'red'
+                    }
+                },
+
+                methods:{
+                    sendColor(){
+                        console.log(this.color);
+                        //子组件传值给父组件  通过自定义事件（$emit）
+                        //$emit（'自定义事件的名称'，需要传递的变量）
+                        //常见的html事件 click mouseover key
+                        this.$emit('changecolor',this.color); 
+                    }
+                },
+            },
+
+        //问题  点击button ， 把color值传递到最外层#div1
+        //子 传值 父
+        /*
+            1.使用$emit（）触发自定义事件，触发方法就可以带上变量，this.$emit（自定义事件名称，需要传递给父的值）
+            2.找到子组件标签<my-con>，然后在这个标签上增加一个自定义事件，通过@自定义事件="响应事件的方法"
+            3.在父组件上实现相应方法，方法接受的参数，就是触发自定义事件传递的值
+        */
+        }
+    })
+</script>
+</html>

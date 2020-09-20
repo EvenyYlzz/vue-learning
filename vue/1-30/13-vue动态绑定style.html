@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        .div2{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div1">
+        <p><button @click="changeColor">切换颜色</button></p>
+        <div class="div2" :style="{backgroundColor:color}"></div>
+        <!-- 注意这里背景颜色是backgroundColor 不是background-color -->
+        <p></p>
+        <p></p>
+    </div>
+</body>
+
+<script>
+    new Vue({
+        el:'#div1',
+        data:{
+            color:'rgb(0,0,0)',
+        },
+        methods:{
+            changeColor(){
+                this.color='rgb('+this.randomcolor()+','+this.randomcolor()+','+this.randomcolor()+')';
+            },
+
+            randomcolor(){
+                return Math.floor(Math.random()*256);
+            },
+        },
+    })
+        
+
+           
+</script>
+</html>

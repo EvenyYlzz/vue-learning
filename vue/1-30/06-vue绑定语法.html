@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="div1">
+        <!-- 正常利用vue的插值语法显示一个变量 -->
+        <p>{{a}}</p>
+
+        <!-- 在标签后加入v-pre后即可正常显示{{}}以及其中内容，其作用范围包含其子节点 -->
+        <p v-pre>
+            正常显示{{a}}
+            <span>
+                正常显示{{a}}
+            </span>
+        </p>
+
+        <!-- 直接引入一个超链接到页面，是不会显示的，默认都当作字符串文本处理 -->
+        <p>{{b}}</p>
+
+
+        <!-- 引入v-html后，才会将其标签当作html内容进行渲染到页面 -->
+        <p v-html="b"></p>
+
+        <!-- v-text类似于插值语法的作用，但其优先级比插值语法高，有他在，则替换掉插值语法里内容 -->
+        <p v-text="c">{{a}}</p>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#div1',
+            data:{
+                a:'a变量',
+                
+                //vue为了防止XSS（Cross site scripting）的攻击
+                //默认是不会直接把字符串标签渲染的
+
+                b:'<a href="https://www.baidu.com"> 百度 </a>',
+
+                c:1,
+            }
+        })
+    </script>
+
+</body>
+</html>

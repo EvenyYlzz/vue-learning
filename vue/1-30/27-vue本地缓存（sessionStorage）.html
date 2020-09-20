@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+</body>
+<script>
+    /*
+        sessionStorage:
+            1.存储到本地浏览器，但是这个是暂时存储（关闭页面时就会被清除，刷新页面不会）
+            2.setItem（key，value）存储方法
+            3.getItem（key）       获取存储的值
+            4.clear（）            清除sessionStorage里面的所有值
+    */
+   var obj = {a:1,b:2};
+   var num = 1;
+   sessionStorage.setItem('num',num);
+   //这里需要注意，虽然传入的数字类型，但是这里会隐式地将其转换成字符串类型
+   sessionStorage.setItem('obj',JSON.stringify(obj));
+    var objStr = sessionStorage.getItem('obj');
+    console.log(typeof objStr);
+    console.log(JSON.parse(objStr));
+    //sessionStorage.clear();
+</script>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="div1">
+        <span slot="左">插槽1</span>
+        <span slot="中">插槽2</span>
+        <span slot="右">插槽3</span>
+    </div>
+    <!-- 如果组件内插槽使用多个，一般使用具名插槽 -->
+    <!-- 这样则不会导致每个插槽都插入全部内容然后重复插入多次 -->
+</body>
+<template id="demo1">
+    <div>
+        <slot name="左"></slot>
+        <slot name="中"></slot>
+        <slot name="右"></slot>
+    </div>
+</template>
+<script>
+    new Vue({
+        el:'#div1',
+
+        components:{
+            MyCon:{
+                template:'#demo1',
+            },
+        }
+    })
+</script>
+</html>

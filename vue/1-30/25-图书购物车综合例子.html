@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        .kongbai{
+            height: 300px;
+        }
+
+        #div1{
+            width: 400px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="kongbai"></div>
+    <div id="div1">
+        <table>
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>书籍名称</th>
+                    <th>出版日期</th>
+                    <th>价格</th>
+                    <th>购买数量</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr v-for="( book , index ) in books" :key="">
+                    <td>{{index+1}}</td>
+                    <td>{{book.name}}</td>
+                    <td>{{book.date}}</td>
+                    <td>{{  (book.price*book.num)  |  formPrince }}</td>
+                    <td>
+                        <button @click="minus(index)">-</button>
+                        {{book.num}}
+                        <button @click="plus(index)">+</button>
+                    </td>
+                    <td>
+                        <button @click="del(index)">移除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <p>总价格：{{Sum}}</p>
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#div1',
+        data:{
+            books:[
+                {
+                    name:'算法导论',
+                    date:'2006-09',
+                    price: 85,
+                    num:1,
+                },
+
+                {
+                    name:'UNIX编程艺术',
+                    date:'2006-02',
+                    price:59 ,
+                    num:1,
+                },
+
+                {
+                    name:'Vue程序设计',
+                    date:'2008-10',
+                    price:35 ,
+                    num:1,
+                },
+
+                {
+                    name:'颈椎康复',
+                    date:'2006-03',
+                    price: 129,
+                    num:1,
+                },
+
+               
+            ]
+        },
+
+        methods:{
+            del(idx){
+                return this.books.splice(idx,1);
+            },
+
+            minus(idx){
+                if(this.books[idx].num==1){
+                    return ;
+                }
+                this.books[idx].num=this.books[idx].num-1;
+            },
+
+            plus(idx){
+                this.books[idx].num=this.books[idx].num+1;
+            },
+        },
+
+        filters:{
+            formPrince(val){
+                return val.toFixed(2);
+            },
+        },
+
+        computed:{
+            Sum(){
+                return this.books.reduce(function( prev , current ){
+                    prev=prev+current.num*current.price;
+                    return prev;
+                },0)
+            },
+        },
+    })
+</script>
+</html>

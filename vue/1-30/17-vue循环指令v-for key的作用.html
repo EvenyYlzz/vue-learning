@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="div1">
+        <p>zjx是你的</p>
+
+        <!-- v-model用来绑定一个变量用来获取当前输入框的值 -->
+
+        <input type="text" v-model="inputVal">
+        <button @click="add">添加</button>
+        <ul>
+            <li v-for="(item,index) in arr" :key="item" :mykey="item">
+                <input type="checkbox">{{item}}
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    var a=1;
+    var a=2;
+    var a=3;
+    var a=4;
+    /*
+    每一次改变a 更新一次，相当于更新4次，每一次更新我都需要绑定在页面上，如果直接操作DOM，则操作了4此DOM
+
+    每一次改变a 更新一次 相当于更新4次，但是更新操作发生在我们的虚拟DOM上，相当于操作js对象，相对于真实操作DOM来说是好很多，虚拟DOM有一个更新机制（最后再把四次的结果更新到页面上），相当于只操作了一次真实DOM
+
+    可以理解为，先在js操作完数据，最后再统一更新到DOM上
+    虚拟DOM就是为了解决操作真实DOM的性能问题
+
+        1.key的值要唯一
+        2.key的作用：用来高效得更新我们的虚拟DOM
+        3.什么是虚拟DOM，简单理解：就是一个js对象用来表示html结构
+            用 js对象来表示我们的页面元素结构，这个对象就是虚拟DOM
+            为什么需要虚拟DOM？
+            真实的DOM操作是不是很耗费性能，如果我们更新真实的DOM结构之前，先用虚拟DOM操作一遍，存在一个更新机制，（并不是马上更新），先全部在虚拟的DOM操作完，再统一更新到真实的DOM 
+        4.key相当于作为虚拟DOM的唯一值，根据这个key来更新我们的虚拟DOM
+        5.如果不写key属性，虚拟DOM是怎么更新的？有一个数组['Vue','Angular','React']，现在把js插入到数组最前面去，和我们绑定key是下标一样的方式
+        6.一般后端返回一个数组，要求渲染到页面上，这个时候v-for，key值一般拿后端返回的数据的唯一值（id值）
+
+        简单理解为此，但实际不是如下所示
+        var obj = {
+            'Vue':{
+                tag:'li',
+                children:{
+                    {
+                        tag:'input',
+                        attribute:'type="checkbox"'
+                    }
+                    {
+                        text:'Vue',
+                    }
+                }
+            },
+            'Angular':{......},
+            'React':{......},
+        }
+
+    */
+    new Vue({
+        el:'#div1',
+        data:{
+            arr:['小臭猪'],
+            inputVal:'',
+        },
+
+        
+        //unshift往数组最前面添加元素
+        //push往数组最后面添加元素
+        methods:{
+            add(){
+                this.arr.unshift(this.inputVal);
+            }
+        }
+    })
+</script>
+</html>

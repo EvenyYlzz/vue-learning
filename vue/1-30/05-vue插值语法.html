@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="div1">
+        <p>a的值：{{a}}</p>
+        <!-- 插值语法，里面可用表达式 -->
+        <p>{{a==1? '男':'女'}}</p>
+        <!-- 也可进行简单运算 -->
+        <p>a+2={{a+2}}</p>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#div1',
+            data:{
+                a:1,
+            }
+        })
+    </script>
+</body>
+</html>
